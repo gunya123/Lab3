@@ -1,0 +1,24 @@
+public class Solution {
+    public double MyPow(double x, int r) {
+         // 0. edge case 0 or 1 
+        if (r==0) return 1;
+        if (r==1) return x;
+
+        // 1. edge case for overflow(negative)
+        if(r == Int32.MinValue){
+            x = x * x;
+            r = r/2;
+        }
+
+        // 2. negative case prepare
+        if (r < 0) {
+            r = -r;
+            x = 1/x;
+        }
+        if (r % 2 == 0) {
+            return MyPow(x*x, r/2);
+        } else {
+            return MyPow(x*x, r/2) * x;
+        }
+    }
+}
